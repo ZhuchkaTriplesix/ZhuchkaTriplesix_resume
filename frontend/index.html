@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZhuchkaTriplesix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="container">
+                <h1>{{ name }}</h1>
+                <p>{{ profession }}</p>
+            </div>
+        </header>
+
+        <section class="about">
+            <div class="container">
+                <h2>Обо мне</h2>
+                <p>{{ aboutMe }}</p>
+            </div>
+        </section>
+
+        <section class="skills">
+            <div class="container">
+                <h2>Навыки</h2>
+                <ul>
+                    <li v-for="skill in skills" :key="skill">{{ skill }}</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="contacts">
+            <div class="container">
+                <h2>Контакты</h2>
+                <p>Email: {{ email }}</p>
+                <p>Телефон: {{ phone }}</p>
+                <a :href="githubLink" class="github-button">Мой GitHub</a>
+            </div>
+        </section>
+
+        <section class="comments">
+            <div class="container">
+                <h2>Отзывы</h2>
+                <form @submit.prevent="submitComment">
+                    <div>
+                        <input type="text" v-model="newUsername" placeholder="Ваше имя или компания" required>
+                    </div>
+                    <div>
+                        <input type="text" v-model="newComment" placeholder="Ваш отзыв" required>
+                    </div>
+                    <button type="submit">Оставить отзыв</button>
+                </form>
+
+                <ul class="comment-list">
+                    <li v-for="(comment, index) in comments" :key="index">
+                        <strong>{{ comment.username }}:</strong> {{ comment.comment }}
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="app.js"></script>
+</body>
+</html>
