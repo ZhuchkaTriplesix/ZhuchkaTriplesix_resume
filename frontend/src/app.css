@@ -1,0 +1,149 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff; /* Белый фон страницы */
+    color: #333; /* Темно серый текст */
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+section {
+    margin: 40px 0;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about p, .skills ul, .contact p {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.skills ul {
+    list-style: none;
+}
+
+.skills li {
+    background-color: #e0e0e0; /* Светло серый фон */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #333;
+}
+
+.contact a {
+    color: #333; /* Темно серый текст */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact a:hover {
+    color: #333;
+}
+
+/* Полукруглая кнопка GitHub */
+.btn-github {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 40px;
+    background-color: #333;
+    color: #e0e0e0 !important;
+    text-decoration: none;
+    border-radius: 5px; /* Делаем кнопку полукруглой */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-github:hover {
+    background-color: #555;
+}
+
+/* Отзывы */
+.comments {
+    background-color: #f4f4f4; /* Светло серый фон для отзывов */
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.comment {
+    background-color: #fff; /* Белый фон для каждого отзыва */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.comment p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333; /* Темно серый текст */
+}
+
+.comment-form {
+    background-color: #f4f4f4; /* Светло серый фон для формы отзыва */
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.comment-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

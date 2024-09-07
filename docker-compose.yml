@@ -1,33 +1,36 @@
 version: '3.8'
 
 services:
-  backend:
-    build: ./backend
-    container_name: backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
-    environment:
-      MONGO_URL: mongodb://mongo:27017/comments_db
-    depends_on:
-      - mongo
-
   frontend:
-    build: ./frontend
-    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
       - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/your-database
+    networks:
+      - app-network
 
   mongo:
     image: mongo:latest
-    container_name: mongo
     ports:
       - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
+    networks:
+      - app-network
 
-volumes:
-  mongo-data:
+networks:
+  app-network:
+    driver: bridge

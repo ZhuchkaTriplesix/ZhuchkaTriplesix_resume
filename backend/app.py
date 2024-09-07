@@ -1,44 +1,39 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from pymongo import MongoClient
-from bson import ObjectId
+from typing import List
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 import random
 
-
-client = MongoClient("mongodb://mongo:27017/")
-db = client["comments_db"]
-collection = db["comments"]
-
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Разрешаем запросы от всех доменов
+    allow_credentials=True,
+    allow_methods=["*"],  # Разрешаем все HTTP методы
+    allow_headers=["*"],  # Разрешаем все заголовки
+)
 
-
+# Настройка подключения к MongoDB
+client = MongoClient('mongodb://mongo:27017/')
+db = client['comments_db']
+collection = db['comments']
 
 class Comment(BaseModel):
     username: str
-    comment: str
+    text: str
 
-
-@app.get("/comments")
+@app.get("/comments", response_model=List[Comment])
 async def get_comments():
-    comments = []
-    for item in collection.find():
-        comments.append({"username": item["username"], "comment": item["comment"]})
-    return comments
+    all_comments = list(collection.find({}, {'_id': 0}))  # Получаем все комментарии
+    if len(all_comments) > 3:
+        random_comments = random.sample(all_comments, 3)  # Выбираем случайные 3 комментария
+    else:
+        random_comments = all_comments  # Если меньше 3, возвращаем все
 
-
-@app.get("/comments/random")
-async def get_random_comments():
-    try:
-        random_comments = list(collection.aggregate([{"$sample": {"size": 3}}]))
-        return [{"username": item["username"], "comment": item["comment"]} for item in random_comments]
-    except Exception as e:
-        raise HTTPException(status_code=500, detail="Ошибка при получении случайных отзывов")
-
+    return random_comments
 
 @app.post("/comments")
-async def add_comment(comment: Comment):
-    if collection.find_one({"username": comment.username}):
-        raise HTTPException(status_code=400, detail="Пользователь с таким именем уже оставлял комментарий")
-
-    collection.insert_one({"username": comment.username, "comment": comment.comment})
-    return {"message": "Комментарий добавлен успешно!"}
+async def post_comment(comment: Comment):
+    collection.insert_one(comment.dict())
+    return {"message": "Comment added successfully"}

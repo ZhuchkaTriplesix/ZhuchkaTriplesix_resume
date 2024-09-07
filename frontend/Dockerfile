@@ -1,6 +1,5 @@
-# Базовый образ для сборки Vue.js-приложения
-FROM node:16 as build-stage
-
+# Шаг 1: Сборка приложения
+FROM node:16 AS build-stage
 WORKDIR /app
 
 # Копируем package.json и package-lock.json
@@ -9,25 +8,20 @@ COPY package*.json ./
 # Устанавливаем зависимости
 RUN npm install
 
-# Копируем весь проект
+# Копируем все исходные файлы
 COPY . .
 
-# Сборка приложения
+# Сборка проекта
 RUN npm run build
 
-# Базовый образ для Nginx
-FROM nginx:stable-alpine as production-stage
+# Шаг 2: Настройка NGINX
+FROM nginx:alpine AS production-stage
 
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Копируем файлы сборки из предыдущего этапа
+COPY --from=build-stage /app/build /usr/share/nginx/html
 
-
-COPY ./index.html /usr/share/nginx/html/
-COPY ./style.css /usr/share/nginx/html/
-COPY ./app.js /usr/share/nginx/html/
-
-# Конфигурация Nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-
+# Открываем порт 80
 EXPOSE 80
 
+# Запускаем NGINX
 CMD ["nginx", "-g", "daemon off;"]

@@ -17,14 +17,14 @@
 
         <section class="about">
             <div class="container">
-                <h2>Обо мне</h2>
+                <h2>Обо мне:</h2>
                 <p>{{ aboutMe }}</p>
             </div>
         </section>
 
         <section class="skills">
             <div class="container">
-                <h2>Навыки</h2>
+                <h2>Навыки:</h2>
                 <ul>
                     <li v-for="skill in skills" :key="skill">{{ skill }}</li>
                 </ul>
@@ -33,7 +33,7 @@
 
         <section class="contacts">
             <div class="container">
-                <h2>Контакты</h2>
+                <h2>Контакты:</h2>
                 <p>Email: {{ email }}</p>
                 <p>Телефон: {{ phone }}</p>
                 <a :href="githubLink" class="github-button">Мой GitHub</a>
@@ -42,7 +42,7 @@
 
         <section class="comments">
             <div class="container">
-                <h2>Отзывы</h2>
+                <h2>Отзывы:</h2>
                 <form @submit.prevent="submitComment">
                     <div>
                         <input type="text" v-model="newUsername" placeholder="Ваше имя или компания" required>
