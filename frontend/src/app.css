@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fff; /* Белый фон страницы */
-    color: #333; /* Темно серый текст */
+    background-color: #fff;
+    color: #333;
     line-height: 1.6;
 }
 
@@ -54,7 +54,7 @@ section h2 {
 }
 
 .skills li {
-    background-color: #e0e0e0; /* Светло серый фон */
+    background-color: #e0e0e0;
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
@@ -62,7 +62,7 @@ section h2 {
 }
 
 .contact a {
-    color: #333; /* Темно серый текст */
+    color: #333;
     text-decoration: none;
     font-weight: bold;
 }
@@ -71,7 +71,6 @@ section h2 {
     color: #333;
 }
 
-/* Полукруглая кнопка GitHub */
 .btn-github {
     display: inline-block;
     margin-top: 20px;
@@ -79,7 +78,7 @@ section h2 {
     background-color: #333;
     color: #e0e0e0 !important;
     text-decoration: none;
-    border-radius: 5px; /* Делаем кнопку полукруглой */
+    border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
@@ -88,11 +87,8 @@ section h2 {
     background-color: #555;
 }
 
-/* Отзывы */
-
-
 .comment {
-    background-color: #e0e0e0; /* Белый фон для каждого отзыва */
+    background-color: #e0e0e0;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -102,7 +98,7 @@ section h2 {
 .comment p {
     margin: 0;
     font-size: 1.1rem;
-    color: #333; /* Темно серый текст */
+    color: #333;
 }
 
 
@@ -128,7 +124,6 @@ section h2 {
     background-color: #555;
 }
 
-/* Footer */
 footer {
     background-color: #333;
     color: #fff;
