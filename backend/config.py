@@ -11,4 +11,7 @@ class CfgBase(ABC):
     dict: callable = asdict
 
 
-class
+class Mongo(CfgBase):
+    host: str = config["MONGO"]["HOST"]
+
+mongo = Mongo()

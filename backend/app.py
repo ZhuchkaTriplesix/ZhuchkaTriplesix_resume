@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from typing import List
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from config import mongo
 import random
 
 app = FastAPI()
@@ -14,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-client = MongoClient('mongodb://mongo:27017/')
+client = MongoClient(mongo.host)
 db = client['comments_db']
 collection = db['comments']
 
